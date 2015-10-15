@@ -1,9 +1,9 @@
 # node-salesforceiq
 SalesforceIQ API wrapper for NodeJS
 
-Inspired by https://github.com/sjlu/node-relateiq
+[![Coverage Status](https://coveralls.io/repos/Illumineto/node-salesforceiq/badge.svg?branch=master&service=github)](https://coveralls.io/github/Illumineto/node-salesforceiq?branch=master) [![Build Status](https://travis-ci.org/Illumineto/node-salesforceiq.svg?branch=master)](https://travis-ci.org/Illumineto/node-salesforceiq)
 
-This module makes it easier to communicate with the SalesforceIQ API in NodeJS.
+Inspired by https://github.com/sjlu/node-relateiq
 
 ## Usage
 ### Installation
