@@ -27,10 +27,8 @@ describe('SalesforceIQ Event Operations', function() {
       ]
     };
 
-    salesforceIQ.createEvent(body, function(err, data) {
+    salesforceIQ.createEvent(body, function(err) {
       assert.ifError(err);
-      // REF: print(err, data);
-
       done();
     });
   });
