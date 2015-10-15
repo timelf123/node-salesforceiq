@@ -10,12 +10,7 @@ var _ = require('lodash');
 var apiKey = process.env['SALESFORCEIQ_KEY'];
 var apiSecret = process.env['SALESFORCEIQ_SECRET'];
 
-function print(err, data) {
-  console.log(err);
-  console.log(util.inspect(data, false, null));
-}
-
-describe('SalesforceIQ', function() {
+describe('SalesforceIQ List Operations', function() {
   var salesforceIQ = new SalesforceIQ(apiKey, apiSecret);
   var accountId = null;
   var companyName = 'Test - Sigma Software';
@@ -29,82 +24,7 @@ describe('SalesforceIQ', function() {
   var listAccountzId = null;
   var listAccountzItemId = null;
 
-  it('should create an account', function(done) {
-    salesforceIQ.createAccount({
-      name: companyName
-    }, function(err, data) {
-      assert.ifError(err);
-      print(err, data);
-
-      assert.equal(data.name, companyName);
-      assert.ok(data.id);
-
-      accountId = data.id;
-      console.log(companyName + ' -> accountId = ', accountId);
-
-      done();
-    });
-  });
-
-  it('should retrieve the account', function(done) {
-    salesforceIQ.getAccount(accountId, function(err, data) {
-      assert.ifError(err);
-      // REF print(err, data);
-
-      assert.equal(data.name, companyName);
-      assert.ok(data.id);
-
-      done();
-    });
-  });
-
-  it('should retrieve the account fields', function(done) {
-    salesforceIQ.getAccountFields(function(err, data) {
-      assert.ifError(err);
-      // REF print(err, data);
-
-      assert.ok(data.fields);
-
-      done();
-    });
-  });
-
-  /* SKIPPING AS API DOES NOT HAVE ABILITY TO DELETE AFTER CREATING */
-  it.skip('should create a contact', function(done) {
-    salesforceIQ.createContact({
-      name: contactName,
-      company: companyName,
-      email: contactEmail
-    }, function(err, data) {
-      assert.ifError(err);
-      // REF print(err, data);
-
-      assert.ok(data.id);
-      assert.equal(_.first(data.properties.email).value, contactEmail);
-
-      contactId = data.id;
-      console.log(contactEmail + ' -> contactId = ', contactId);
-
-      done();
-    });
-  });
-
-  it('should retrieve a contact via an email address', function(done) {
-    salesforceIQ.getContactByEmail(contactEmail, function(err, data) {
-      assert.ifError(err);
-      // REF print(err, data);
-
-      assert.ok(data[0].id);
-      assert.equal(data[0].properties.email[0].value, contactEmail);
-
-      contactId = data[0].id;
-      console.log(contactEmail + ' -> contactId = ', contactId);
-
-      done();
-    });
-  });
-
-  it('should get a list', function(done) {
+  it.skip('should get a list', function(done) {
     // REF console.log('------------------ getLists ----------------------');
     salesforceIQ.getLists(function(err, data) {
       assert.ifError(err);
@@ -132,7 +52,7 @@ describe('SalesforceIQ', function() {
     });
   });
 
-  it('should create a list item for Accountz', function(done) {
+  it.skip('should create a list item for Accountz', function(done) {
     salesforceIQ.createListItem(listAccountzId, {
       accountId: accountId,
       contactIds: [
@@ -153,7 +73,7 @@ describe('SalesforceIQ', function() {
     });
   });
 
-  it('should get a list of items in Licenses', function(done) {
+  it.skip('should get a list of items in Licenses', function(done) {
     var queryString = '_start=0&_limit=5';
 
     salesforceIQ.getListItems(listLicensesId, queryString, function(err, data) {
@@ -167,7 +87,7 @@ describe('SalesforceIQ', function() {
     });
   });
 
-  it('should create a list item for Licenses', function(done) {
+  it.skip('should create a list item for Licenses', function(done) {
     var query = {};
 
     query.contactIds = [contactId];
@@ -231,7 +151,7 @@ describe('SalesforceIQ', function() {
     );
   });
 
-  it('should get a list of items in Licenses by modified 1 minute ago',
+  it.skip('should get a list of items in Licenses by modified 1 minute ago',
     function(done) {
       console.log('--------------------- getListItem: 1 minute ago----------');
 
@@ -287,29 +207,9 @@ describe('SalesforceIQ', function() {
     );
   });
 
-  it('should create an event', function(done) {
-    var body = {
-      subject: 'New account created',
-      body: 'New account created for ' + contactName,
-      participantIds: [
-        {
-          type: 'email',
-          value: contactEmail
-        }
-      ]
-    };
-
-    salesforceIQ.createEvent(body, function(err, data) {
-      assert.ifError(err);
-      // REF: print(err, data);
-
-      done();
-    });
-  });
-
   /* Cleanup */
 
-  it('should remove a list item in Accountz', function(done) {
+  it.skip('should remove a list item in Accountz', function(done) {
     salesforceIQ.removeListItem(listAccountzId,
       listAccountzItemId, function(err, data) {
       assert.ifError(err);
@@ -319,7 +219,7 @@ describe('SalesforceIQ', function() {
     });
   });
 
-  it('should remove a list item in Licenses', function(done) {
+  it.skip('should remove a list item in Licenses', function(done) {
     salesforceIQ.removeListItem(listLicensesId,
       listLicensesItemId, function(err, data) {
       assert.ifError(err);
@@ -329,22 +229,4 @@ describe('SalesforceIQ', function() {
     });
   });
 
-  it('should delete an account', function(done) {
-    salesforceIQ.deleteAccount(accountId, function(err, data) {
-      assert.ifError(err);
-      // REF print(err, data);
-
-      done();
-    });
-  });
-
-  it.skip('should delete a contact', function(done) {
-    // NJC this does not work.  IQ has 'archive' in UI not in API
-    salesforceIQ.deleteContact(contactId, function(err, data) {
-      assert.ifError(err);
-      // REF print(err, data);
-
-      done();
-    });
-  });  
 });
