@@ -57,6 +57,16 @@ describe('SalesforceIQ Account Operations', function() {
     });
   });
 
+  it.skip('can update the account', function(done) {
+    salesforceIQ.getAccount(accountId, function(err, data) {
+      assert.ifError(err);
+      assert.equal(data.name, companyName);
+      assert.ok(data.id);
+
+      done();
+    });
+  });
+
   it('should delete an account', function(done) {
     salesforceIQ.deleteAccount(accountId, function(err, data) {
       assert.ifError(err);
