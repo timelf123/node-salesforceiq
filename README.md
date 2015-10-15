@@ -9,7 +9,7 @@ This module makes it easier to communicate with the SalesforceIQ API in NodeJS.
 ### Installation
 
 ```
-npm install relateiq --save
+npm install salesforceiq --save
 ```
 
 ### Getting Started
