@@ -2,10 +2,7 @@
 
 var SalesforceIQ = require('../index.js');
 
-var util = require('util');
 var assert = require('assert');
-var uid = require('uid');
-var _ = require('lodash');
 
 var apiKey = process.env['SALESFORCEIQ_KEY'];
 var apiSecret = process.env['SALESFORCEIQ_SECRET'];
@@ -15,15 +12,6 @@ describe('SalesforceIQ Account Operations', function() {
   var accountId = null;
   var companyName = 'Test - Sigma Software';
   var companyNameUpdated = 'Test - Sigma Software: Updated';
-  var contactName = 'User Leslie';
-  var contactEmail = 'leslie@test.sigmasofware.com';
-  var contactId = null;
-  var listPeopleId = null;
-  var listLicensesId = null;
-  var listLicensesItem = null;
-  var listLicensesItemId = null;
-  var listAccountzId = null;
-  var listAccountzItemId = null;
 
   it('can the fields for account', function(done) {
     salesforceIQ.getAccountFields(function(err, data) {
