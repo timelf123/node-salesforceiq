@@ -1,0 +1,32 @@
+{
+  "name": "salesforceiq",
+  "version": "1.0.0",
+  "description": "SalesforceIQ API wrapper for NodeJS",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Illumineto/node-salesforceiq.git"
+  },
+  "keywords": [
+    "salesforce",
+    "salesforceiq",
+    "relateiq"
+  ],
+  "author": "Nick Caruso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Illumineto/node-salesforceiq/issues"
+  },
+  "homepage": "https://github.com/Illumineto/node-salesforceiq#readme",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "request": "^2.65.0",
+    "uid": "0.0.2"
+  }
+}
