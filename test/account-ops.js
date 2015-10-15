@@ -14,6 +14,7 @@ describe('SalesforceIQ Account Operations', function() {
   var salesforceIQ = new SalesforceIQ(apiKey, apiSecret);
   var accountId = null;
   var companyName = 'Test - Sigma Software';
+  var companyNameUpdated = 'Test - Sigma Software: Updated';
   var contactName = 'User Leslie';
   var contactEmail = 'leslie@test.sigmasofware.com';
   var contactId = null;
@@ -57,10 +58,10 @@ describe('SalesforceIQ Account Operations', function() {
     });
   });
 
-  it.skip('can update the account', function(done) {
-    salesforceIQ.getAccount(accountId, function(err, data) {
+  it('can update the account', function(done) {
+    salesforceIQ.updateAccount(accountId, { id: accountId, name: companyNameUpdated }, function(err, data) {
       assert.ifError(err);
-      assert.equal(data.name, companyName);
+      assert.equal(data.name, companyNameUpdated);
       assert.ok(data.id);
 
       done();
