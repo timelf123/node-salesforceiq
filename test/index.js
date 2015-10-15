@@ -1,6 +1,6 @@
 'use strict';
 
-var SalesforceIQLib = require('../index.js');
+var SalesforceIQ = require('../index.js');
 
 var util = require('util');
 var assert = require('assert');
@@ -16,7 +16,7 @@ function print(err, data) {
 }
 
 describe('SalesforceIQ', function() {
-  var salesforceIQ = new SalesforceIQLib(apiKey, apiSecret);
+  var salesforceIQ = new SalesforceIQ(apiKey, apiSecret);
   var accountId = null;
   var companyName = 'Test - Sigma Software';
   var contactName = 'User Leslie';
